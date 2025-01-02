@@ -19,10 +19,10 @@ way to stay sharp, learn new things, and build a personal archive of solutions.
 
 ### 3. Folder Naming
 
-- Create a folder for each week's solution using the format: `wXX-solution-name`, where:
+- Create a folder for each week's solution using the format: `wXX_solution_name`, where:
     - `XX` is the week number with a leading zero (e.g., `w01` for the first week).
-    - `solution-name` is a concise description of the solution in **url-case**.
-- Example: `w01-bubble-sort` for the first week's solution.
+    - `solution_name` is a concise description of the solution.
+- Example: `w01_bubble_sort` for the first week's solution.
 - _Tip:_ You can find the current week number by visiting websites like whatisthisweek.com or by running the command:
   `date +%V` (on Unix/Linux-based systems).
 
@@ -41,8 +41,8 @@ way to stay sharp, learn new things, and build a personal archive of solutions.
 - If you solve multiple problems in a single week, create separate folders for each solution.
 - Use the same week number but a unique solution name for each folder.
 - Example:
-    - `w01-bubble-sort`
-    - `w01-fizzbuzz`
+    - `w01_bubble_sort`
+    - `w01_fizz_buzz`
 
 ### 7. Committing Code
 
