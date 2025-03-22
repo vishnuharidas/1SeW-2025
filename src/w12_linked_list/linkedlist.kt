@@ -1,13 +1,16 @@
 package w12_linked_list
 
-data class Node<T>(
-    val contents: T,
-    var next: Node<T>? = null
-)
+import kotlin.random.Random
 
-internal class LinkedList<T> {
+internal class LinkedList<T> : Iterable<T> {
+
+    data class Node<T>(
+        val contents: T,
+        var next: Node<T>? = null
+    )
 
     private var start: Node<T>? = null
+    private var end: Node<T>? = null
 
     val length: Int
         get() {
@@ -29,16 +32,31 @@ internal class LinkedList<T> {
 
         if (start == null) {
             start = node
+        } else {
+            end?.next = node
+        }
+
+        end = node
+
+    }
+
+    fun remove(i: Int) {
+        if (i >= length) throw IndexOutOfBoundsException("Maximum length is $length")
+        if (i < 0) throw IndexOutOfBoundsException("Negative index $i")
+
+        if (i == 0) {
+            start = start?.next
             return
         }
 
-        var i = start
-        while (i?.next != null) {
-            i = i.next
+        var node = start
+        var pos = i
+        while (pos != 1) {
+            node = node?.next
+            pos--
         }
 
-        i?.next = node
-
+        node?.next = node?.next?.next
     }
 
     fun itemAt(i: Int): T? {
@@ -55,6 +73,23 @@ internal class LinkedList<T> {
 
         return node?.contents
 
+    }
+
+    override fun iterator(): Iterator<T> {
+        return object : Iterator<T> {
+
+            var current = start
+
+            override fun hasNext() = current != null
+
+            override fun next(): T {
+                if (!hasNext()) throw NoSuchElementException()
+                val data = current!!.contents
+                current = current?.next
+                return data
+            }
+
+        }
     }
 
     override fun toString(): String {
@@ -86,11 +121,27 @@ fun main() {
 
     println(list)
 
-    list.insert(1); println(list)
-    list.insert(2); println(list)
-    list.insert(3); println(list)
-    list.insert(4); println(list)
-    list.insert(5); println(list)
+    println("Insert:")
+    repeat(20) {
+        list.insert(it); println(list)
+    }
 
     println("Item at 4 is : ${list.itemAt(4)}")
+
+    println("Iterate:")
+    val hundreds = list.map { it * 100 }
+    println("Hundreds: $hundreds")
+
+    val odds = list.filter { it % 2 != 0 }
+    println("Odds: $odds")
+
+    val shuffled = list.shuffled().map { it }
+    println("Shuffled Numbers: $shuffled")
+
+    println("Remove:")
+    repeat(20) {
+        val pos = Random.nextInt(0, list.length)
+        list.remove(pos); println("Remove $pos: $list")
+    }
+
 }
