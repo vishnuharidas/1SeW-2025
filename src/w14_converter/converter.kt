@@ -203,4 +203,10 @@ fun main() {
 
     }
 
+    val fh = temperatureConverter.convertToString(37.0, "Celsius", "Fahrenheit")
+    val cel = temperatureConverter.convertToString(37.0, "Celsius", "Celsius")
+    val kel = temperatureConverter.convertToString(37.0, "Celsius", "Kelvin")
+    println("Average human body temperature is $cel, which is: $fh or $kel")
+
+
 }
