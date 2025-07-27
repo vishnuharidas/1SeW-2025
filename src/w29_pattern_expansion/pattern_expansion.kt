@@ -1,4 +1,4 @@
-package w30_pattern_expansion
+package w29_pattern_expansion
 
 internal fun expandPattern(pattern: String): String {
     val stack = mutableListOf<String>()
